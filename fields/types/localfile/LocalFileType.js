@@ -1,12 +1,15 @@
-/**
-Deprecated.
-
-Using this field will now throw an error, and this code will be removed soon.
-
-See https://github.com/keystonejs/keystone/wiki/File-Fields-Upgrade-Guide
-*/
-
 /* eslint-disable */
+
+var _ = require('lodash');
+var FieldType = require('../Type');
+var fs = require('fs-extra');
+var grappling = require('grappling-hook');
+var moment = require('moment');
+var path = require('path');
+var util = require('util');
+var utils = require('keystone-utils');
+
+var loggedWarning = false;
 
 /**
  * localfile FieldType Constructor
@@ -14,11 +17,6 @@ See https://github.com/keystonejs/keystone/wiki/File-Fields-Upgrade-Guide
  * @api public
  */
 function localfile (list, path, options) {
-
-	throw new Error('The LocalFile field type has been removed. Please use File instead.'
-		+ '\n\nSee https://github.com/keystonejs/keystone/wiki/File-Fields-Upgrade-Guide\n');
-
-	/*
 
 	grappling.mixin(this).allowHooks('move');
 	this._underscoreMethods = ['format', 'uploadFile'];
@@ -45,11 +43,9 @@ function localfile (list, path, options) {
 		this.post('move', options.post.move);
 	}
 
-	*/
-
 }
 localfile.properName = 'LocalFile';
-// util.inherits(localfile, FieldType);
+util.inherits(localfile, FieldType);
 
 /**
  * Registers the field on the List's Mongoose Schema.
